@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>I love Alya 💘</title>
+
   <style>
     :root{
       --bg1:#1a0720;
@@ -14,9 +15,10 @@
       --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.72);
       --pink:#ff5fa2;
-      --pink2:#ff3d8d;
     }
+
     *{box-sizing:border-box}
+
     body{
       margin:0;
       min-height:100vh;
@@ -29,22 +31,20 @@
         linear-gradient(135deg,var(--bg1),var(--bg2));
     }
 
-    /* звездочки */
+    /* ⭐ звёзды */
     .stars{
-      position:absolute; inset:0;
+      position:absolute;
+      inset:0;
       background-image:
         radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,.35), transparent 60%),
-        radial-gradient(1.5px 1.5px at 140px 90px, rgba(255,255,255,.25), transparent 60%),
-        radial-gradient(1.5px 1.5px at 280px 160px, rgba(255,255,255,.22), transparent 60%),
-        radial-gradient(2px 2px at 420px 60px, rgba(255,255,255,.28), transparent 60%),
-        radial-gradient(1.5px 1.5px at 560px 140px, rgba(255,255,255,.22), transparent 60%),
-        radial-gradient(2px 2px at 720px 40px, rgba(255,255,255,.30), transparent 60%),
-        radial-gradient(1.5px 1.5px at 860px 170px, rgba(255,255,255,.20), transparent 60%),
-        radial-gradient(2px 2px at 980px 90px, rgba(255,255,255,.26), transparent 60%);
+        radial-gradient(2px 2px at 180px 140px, rgba(255,255,255,.25), transparent 60%),
+        radial-gradient(2px 2px at 400px 90px, rgba(255,255,255,.28), transparent 60%),
+        radial-gradient(2px 2px at 720px 60px, rgba(255,255,255,.30), transparent 60%),
+        radial-gradient(2px 2px at 980px 150px, rgba(255,255,255,.22), transparent 60%);
       opacity:.65;
-      filter: blur(.2px);
       animation: drift 14s linear infinite;
     }
+
     @keyframes drift{
       from{transform:translateY(0)}
       to{transform:translateY(-60px)}
@@ -60,115 +60,82 @@
     }
 
     .card{
-      width:min(920px, 95vw);
-      background: linear-gradient(180deg, var(--card), var(--card2));
+      width:min(920px,95vw);
+      background:linear-gradient(180deg,var(--card),var(--card2));
       border:1px solid var(--stroke);
       border-radius:22px;
-      box-shadow: 0 25px 80px rgba(0,0,0,.45);
-      backdrop-filter: blur(10px);
+      box-shadow:0 25px 80px rgba(0,0,0,.45);
+      backdrop-filter:blur(10px);
       overflow:hidden;
     }
 
     .top{
       display:flex;
-      align-items:flex-start;
       justify-content:space-between;
-      padding:18px 18px 8px 18px;
+      padding:18px 18px 8px;
       gap:12px;
     }
+
     .title{
       font-size:28px;
       font-weight:800;
-      letter-spacing:.2px;
       display:flex;
-      gap:10px;
       align-items:center;
+      gap:10px;
     }
-    .pill{
-      font-size:12px;
-      color:var(--muted);
-      border:1px solid rgba(255,255,255,.16);
-      padding:6px 10px;
-      border-radius:999px;
-      align-self:flex-start;
-      background: rgba(0,0,0,.15);
-      white-space:nowrap;
-    }
+
     .subtitle{
       margin-top:4px;
       color:var(--muted);
       font-size:14px;
-      line-height:1.4;
+    }
+
+    .pill{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.15);
+      color:var(--muted);
+      white-space:nowrap;
+      height:fit-content;
     }
 
     .body{
-      padding: 0 18px 16px 18px;
+      padding:0 18px 16px;
     }
 
+    /* ✅ ВИДЕО НЕ РАСТЯГИВАЕТСЯ */
     .videoShell{
-      position:relative;
       border-radius:18px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.14);
       background:#000;
+      aspect-ratio:16/9;
       max-height:62vh;
     }
+
     video{
       width:100%;
-      height:auto;
+      height:100%;
+      object-fit:cover;
       display:block;
       background:#000;
     }
 
-    /* оверлей для запуска со звуком */
-    .overlay{
-      position:absolute; inset:0;
+    .footer{
       display:flex;
-      align-items:center;
-      justify-content:center;
-      background: radial-gradient(800px 400px at 50% 30%, rgba(255,95,162,.18), rgba(0,0,0,.65));
-      gap:12px;
-      flex-direction:column;
-      padding:18px;
-      text-align:center;
-    }
-    .overlay.hidden{display:none}
-
-    .btn{
-      border:0;
-      background: linear-gradient(135deg, var(--pink), var(--pink2));
-      color:white;
-      padding:12px 18px;
-      border-radius:14px;
-      font-weight:800;
-      font-size:16px;
-      cursor:pointer;
-      box-shadow: 0 10px 30px rgba(255,95,162,.25);
-      transition:.15s transform;
-    }
-    .btn:hover{transform:scale(1.03)}
-    .hint{
-      color:rgba(255,255,255,.85);
-      font-size:13px;
-      max-width:520px;
-      line-height:1.35;
-    }
-
-    .bottom{
-      padding: 10px 18px 18px 18px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
       justify-content:space-between;
+      padding:14px 18px 18px;
       color:var(--muted);
       font-size:13px;
     }
+
     .tag{
       border:1px solid rgba(255,255,255,.14);
-      border-radius:999px;
       padding:6px 10px;
-      background: rgba(0,0,0,.15);
+      border-radius:999px;
+      background:rgba(0,0,0,.15);
     }
   </style>
 </head>
@@ -178,56 +145,38 @@
 
   <div class="wrap">
     <div class="card">
+
       <div class="top">
         <div>
-          <div class="title">Для Али <span style="filter:drop-shadow(0 0 10px rgba(255,95,162,.35))">💗</span></div>
+          <div class="title">
+            Для Али <span style="color:var(--pink)">💗</span>
+          </div>
           <div class="subtitle">
-            Я не умею делать обычные открытки… зато умею в код.  
-            И я хотел, чтобы это было красиво.
+            Я не умею делать обычные открытки… зато умею в код.
+            Я хотел, чтобы это было красиво.
           </div>
         </div>
-        <div class="pill">14 февраля 💞</div>
+
+        <div class="pill">14 февраля 💘</div>
       </div>
 
       <div class="body">
         <div class="videoShell">
-          <video id="vid" playsinline preload="metadata">
+          <!-- ✅ ВИДЕО -->
+          <video controls playsinline preload="metadata">
             <source src="./video.mp4" type="video/mp4">
             Твой браузер не поддерживает видео.
           </video>
-
-          <!-- запуск со звуком -->
-          <div class="overlay" id="ov">
-            <button class="btn" id="play">▶ Включить со звуком</button>
-            <div class="hint">
-              Нажми кнопку — и звук точно включится (браузеры так требуют 🙂).
-            </div>
-          </div>
         </div>
       </div>
 
-      <div class="bottom">
+      <div class="footer">
         <div class="tag">P.S. Я выбираю тебя.</div>
         <div class="tag">— Денис</div>
       </div>
+
     </div>
   </div>
 
-  <script>
-    const v  = document.getElementById('vid');
-    const ov = document.getElementById('ov');
-    const btn = document.getElementById('play');
-
-    btn.addEventListener('click', async () => {
-      try{
-        v.muted = false;
-        v.volume = 1.0;
-        await v.play();
-        ov.classList.add('hidden');
-      }catch(e){
-        alert("Если звук не пошёл — нажми ▶ прямо на видео 🙂");
-      }
-    });
-  </script>
 </body>
 </html>
