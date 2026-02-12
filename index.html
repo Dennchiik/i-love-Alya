@@ -1,82 +1,233 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Я люблю Алю ❤️</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>I love Alya 💘</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    :root{
+      --bg1:#1a0720;
+      --bg2:#061a2a;
+      --card:rgba(255,255,255,.08);
+      --card2:rgba(255,255,255,.06);
+      --stroke:rgba(255,255,255,.14);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --pink:#ff5fa2;
+      --pink2:#ff3d8d;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      overflow:hidden;
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(255,95,162,.25), transparent 60%),
+        radial-gradient(900px 500px at 85% 35%, rgba(0,180,255,.18), transparent 55%),
+        linear-gradient(135deg,var(--bg1),var(--bg2));
     }
 
-    .box {
-      width: 80%;
-      max-width: 800px;
-      text-align: center;
+    /* звездочки */
+    .stars{
+      position:absolute; inset:0;
+      background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,.35), transparent 60%),
+        radial-gradient(1.5px 1.5px at 140px 90px, rgba(255,255,255,.25), transparent 60%),
+        radial-gradient(1.5px 1.5px at 280px 160px, rgba(255,255,255,.22), transparent 60%),
+        radial-gradient(2px 2px at 420px 60px, rgba(255,255,255,.28), transparent 60%),
+        radial-gradient(1.5px 1.5px at 560px 140px, rgba(255,255,255,.22), transparent 60%),
+        radial-gradient(2px 2px at 720px 40px, rgba(255,255,255,.30), transparent 60%),
+        radial-gradient(1.5px 1.5px at 860px 170px, rgba(255,255,255,.20), transparent 60%),
+        radial-gradient(2px 2px at 980px 90px, rgba(255,255,255,.26), transparent 60%);
+      opacity:.65;
+      filter: blur(.2px);
+      animation: drift 14s linear infinite;
+    }
+    @keyframes drift{
+      from{transform:translateY(0)}
+      to{transform:translateY(-60px)}
     }
 
-    video {
-      width: 100%;
-      border-radius: 15px;
-      background: black;
+    .wrap{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
     }
 
-    button {
-      margin-top: 15px;
-      padding: 12px 25px;
-      font-size: 18px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      background: hotpink;
-      color: white;
-      transition: 0.2s;
+    .card{
+      width:min(920px, 95vw);
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border:1px solid var(--stroke);
+      border-radius:22px;
+      box-shadow: 0 25px 80px rgba(0,0,0,.45);
+      backdrop-filter: blur(10px);
+      overflow:hidden;
     }
 
-    button:hover {
-      transform: scale(1.05);
+    .top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      padding:18px 18px 8px 18px;
+      gap:12px;
+    }
+    .title{
+      font-size:28px;
+      font-weight:800;
+      letter-spacing:.2px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .pill{
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,.16);
+      padding:6px 10px;
+      border-radius:999px;
+      align-self:flex-start;
+      background: rgba(0,0,0,.15);
+      white-space:nowrap;
+    }
+    .subtitle{
+      margin-top:4px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.4;
+    }
+
+    .body{
+      padding: 0 18px 16px 18px;
+    }
+
+    .videoShell{
+      position:relative;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      background:#000;
+      max-height:62vh;
+    }
+    video{
+      width:100%;
+      height:auto;
+      display:block;
+      background:#000;
+    }
+
+    /* оверлей для запуска со звуком */
+    .overlay{
+      position:absolute; inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: radial-gradient(800px 400px at 50% 30%, rgba(255,95,162,.18), rgba(0,0,0,.65));
+      gap:12px;
+      flex-direction:column;
+      padding:18px;
+      text-align:center;
+    }
+    .overlay.hidden{display:none}
+
+    .btn{
+      border:0;
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      color:white;
+      padding:12px 18px;
+      border-radius:14px;
+      font-weight:800;
+      font-size:16px;
+      cursor:pointer;
+      box-shadow: 0 10px 30px rgba(255,95,162,.25);
+      transition:.15s transform;
+    }
+    .btn:hover{transform:scale(1.03)}
+    .hint{
+      color:rgba(255,255,255,.85);
+      font-size:13px;
+      max-width:520px;
+      line-height:1.35;
+    }
+
+    .bottom{
+      padding: 10px 18px 18px 18px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .tag{
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:999px;
+      padding:6px 10px;
+      background: rgba(0,0,0,.15);
     }
   </style>
 </head>
 
 <body>
+  <div class="stars"></div>
 
-  <div class="box">
-    <h1>❤️ Для Али ❤️</h1>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <div>
+          <div class="title">Для Али <span style="filter:drop-shadow(0 0 10px rgba(255,95,162,.35))">💗</span></div>
+          <div class="subtitle">
+            Я не умею делать обычные открытки… зато умею в код.  
+            И я хотел, чтобы это было красиво.
+          </div>
+        </div>
+        <div class="pill">14 февраля 💞</div>
+      </div>
 
-    <!-- Видео -->
-    <video id="vid" preload="metadata">
-      <source src="./assets/video.mp4" type="video/mp4">
-      Твой браузер не поддерживает видео.
-    </video>
+      <div class="body">
+        <div class="videoShell">
+          <video id="vid" playsinline preload="metadata">
+            <source src="./video.mp4" type="video/mp4">
+            Твой браузер не поддерживает видео.
+          </video>
 
-    <!-- Кнопка запуска -->
-    <button id="playBtn">▶ Включить со звуком</button>
+          <!-- запуск со звуком -->
+          <div class="overlay" id="ov">
+            <button class="btn" id="play">▶ Включить со звуком</button>
+            <div class="hint">
+              Нажми кнопку — и звук точно включится (браузеры так требуют 🙂).
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <div class="tag">P.S. Я выбираю тебя.</div>
+        <div class="tag">— Денис</div>
+      </div>
+    </div>
   </div>
 
   <script>
-    const video = document.getElementById("vid");
-    const btn = document.getElementById("playBtn");
+    const v  = document.getElementById('vid');
+    const ov = document.getElementById('ov');
+    const btn = document.getElementById('play');
 
-    btn.addEventListener("click", async () => {
-      try {
-        video.muted = false;
-        video.volume = 1.0;
-
-        await video.play();
-
-        btn.style.display = "none";
-      } catch (e) {
-        alert("Браузер заблокировал звук 😢\nНажми ▶ прямо на видео.");
+    btn.addEventListener('click', async () => {
+      try{
+        v.muted = false;
+        v.volume = 1.0;
+        await v.play();
+        ov.classList.add('hidden');
+      }catch(e){
+        alert("Если звук не пошёл — нажми ▶ прямо на видео 🙂");
       }
     });
   </script>
-
 </body>
 </html>
