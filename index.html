@@ -6,92 +6,146 @@
   <title>I love Alya 💘</title>
 
   <style>
+    :root{
+      --bg1:#1a0720;
+      --bg2:#061a2a;
+      --card:rgba(255,255,255,.08);
+      --card2:rgba(255,255,255,.05);
+      --stroke:rgba(255,255,255,.14);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+    }
+
+    *{box-sizing:border-box}
+
     body{
       margin:0;
       min-height:100vh;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(255,95,162,.25), transparent 60%),
+        radial-gradient(900px 500px at 85% 35%, rgba(0,180,255,.18), transparent 55%),
+        linear-gradient(135deg,var(--bg1),var(--bg2));
       display:flex;
       justify-content:center;
       align-items:center;
-      background: radial-gradient(circle at top left,#ff5fa255,transparent 60%),
-                  radial-gradient(circle at bottom right,#00b4ff44,transparent 60%),
-                  linear-gradient(135deg,#1a0720,#061a2a);
-      font-family:system-ui,Segoe UI,Arial;
+      padding:24px;
       overflow:hidden;
-      color:white;
+      color:var(--text);
     }
 
     .card{
-      width:min(900px,95vw);
+      width:min(920px, 95vw);
+      background:linear-gradient(180deg,var(--card),var(--card2));
+      border:1px solid var(--stroke);
       border-radius:22px;
-      padding:18px;
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.15);
-      box-shadow:0 25px 80px rgba(0,0,0,0.45);
+      box-shadow:0 25px 80px rgba(0,0,0,.45);
       backdrop-filter:blur(10px);
+      overflow:hidden;
     }
 
-    h1{
-      margin:0;
-      font-size:28px;
+    .top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      padding:18px;
+    }
+
+    .title{
+      font-size:30px;
       font-weight:800;
     }
 
-    p{
-      margin:6px 0 16px;
-      color:rgba(255,255,255,0.7);
+    .subtitle{
+      margin-top:6px;
       font-size:14px;
+      color:var(--muted);
     }
 
+    .pill{
+      font-size:12px;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.15);
+      color:var(--muted);
+      white-space:nowrap;
+    }
+
+    .body{
+      padding:0 18px 18px;
+    }
+
+    /* ✅ TikTok вертикальный формат */
     .videoShell{
+      width:min(360px, 90vw);
+      aspect-ratio:9 / 16;
+      margin:0 auto;
+
       border-radius:18px;
       overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
       background:#000;
-      border:1px solid rgba(255,255,255,0.15);
 
-      /* фикс под вертикальные видео */
-      max-height:70vh;
       display:flex;
-      justify-content:center;
       align-items:center;
+      justify-content:center;
     }
 
     video{
       width:100%;
       height:100%;
-
-      /* ✅ НЕ ОБРЕЗАЕТ */
-      object-fit: contain;
-
-      background:black;
-      display:block;
+      object-fit:contain; /* НЕ режет */
+      background:#000;
     }
 
     .footer{
-      margin-top:12px;
-      font-size:13px;
-      opacity:0.7;
       display:flex;
       justify-content:space-between;
+      align-items:center;
+      padding:14px 18px 18px;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .tag{
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.15);
     }
   </style>
 </head>
 
 <body>
-  <div class="card">
-    <h1>Для Али 💘</h1>
-    <p>Я не умею делать обычные открытки… зато умею в код.</p>
 
-    <div class="videoShell">
-      <video controls playsinline preload="metadata">
-        <source src="./video2.mp4" type="video/mp4">
-        Твой браузер не поддерживает видео.
-      </video>
+  <div class="card">
+
+    <div class="top">
+      <div>
+        <div class="title">Для Али 💖</div>
+        <div class="subtitle">
+          Я не умею делать обычные открытки… зато умею в код.
+        </div>
+      </div>
+
+      <div class="pill">14 февраля 💘</div>
+    </div>
+
+    <div class="body">
+      <div class="videoShell">
+        <video controls playsinline preload="metadata">
+          <source src="./video2.mp4?v=5" type="video/mp4">
+        </video>
+      </div>
     </div>
 
     <div class="footer">
-      <span>P.S. Я выбираю тебя.</span>
-      <span>— Денис</span>
+      <div class="tag">P.S. Я выбираю тебя.</div>
+      <div class="tag">— Денис</div>
     </div>
+
   </div>
+
 </body>
 </html>
